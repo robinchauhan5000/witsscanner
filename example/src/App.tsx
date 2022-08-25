@@ -1,12 +1,29 @@
-import React, { useEffect } from 'react'
-import RNModuleTemplateModule, { Counter } from 'react-native-module-template'
+import React, { useEffect, useRef, useState } from 'react'
+import { Button } from 'react-native'
+import witsdocsscannerModule, {
+  WitsScanner,
+} from 'witsdocsscanner'
+import { Camera } from 'react-native-vision-camera'
 
 const App = () => {
+  const [state, setState] = useState({})
+  const apiKey =
+    'SQSKUdOMO6BcbK1I090571wsfl0JMjWPd971AIMidtIJqWkJmL13l8umXzEjQmoP'
+  const url =
+    'https://asli-documents-service.dev.in.affinidi.io/api/v1/documents/extract-document'
+
   useEffect(() => {
-    console.log(RNModuleTemplateModule)
+    console.log('state', state)
   })
 
-  return <Counter />
+  return (
+    <WitsScanner
+      apiKey={apiKey}
+      url={url}
+      documentType='PANCR'
+      getResponse={setState} 
+    />
+  )
 }
 
 export default App
